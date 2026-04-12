@@ -1,0 +1,13 @@
+pandas
+numpy
+setuptools
+google-cloud-storage ## To interact with storage buckets in GCP
+pyyaml
+tensorflow
+matplotlib
+seaborn
+wordcloud
+joblib
+scikit-learn
+comet-ml
+dvc
