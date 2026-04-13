@@ -15,5 +15,7 @@ Requires-Dist: joblib
 Requires-Dist: scikit-learn
 Requires-Dist: comet-ml
 Requires-Dist: dvc
+Requires-Dist: dvc-gs
+Requires-Dist: flask
 Dynamic: author
 Dynamic: requires-dist

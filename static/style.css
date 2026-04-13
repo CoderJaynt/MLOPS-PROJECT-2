@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── BODY & BACKGROUND ── */
+body {
+    min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #fffbea;
+    background-image:
+        radial-gradient(ellipse at 15% 30%, rgba(255, 220, 50, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 70%, rgba(255, 200, 0, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(255, 240, 100, 0.2) 0%, transparent 60%);
+}
+
+/* Animated speed-lines conic background */
+body::after {
+    content: '';
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    z-index: 0;
+    background: repeating-conic-gradient(
+        from 0deg,
+        #FFD700 0deg 0.6deg,
+        transparent 0.6deg 9deg
+    );
+    opacity: 0.05;
+    animation: spinLines 80s linear infinite;
+}
+@keyframes spinLines {
+    from { transform: rotate(0deg) scale(1.5); }
+    to   { transform: rotate(360deg) scale(1.5); }
+}
+
+/* Floating particle stars (pure CSS via pseudo + keyframes) */
+body::before {
+    content: '★ ✦ ⭐ ✦ ★ ✦ ⭐ ✦ ★ ✦ ⭐ ✦ ★ ✦ ⭐ ✦ ★ ✦ ⭐';
+    position: fixed;
+    top: 0; left: 0;
+    width: 200%;
+    font-size: 1rem;
+    color: rgba(255, 215, 0, 0.2);
+    letter-spacing: 4rem;
+    line-height: 5rem;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 0;
+    animation: floatStars 25s linear infinite;
+}
+@keyframes floatStars {
+    from { transform: translateX(0) translateY(0); }
+    to   { transform: translateX(-50%) translateY(20px); }
+}
+
+/* ── MAIN CARD ── */
+.form-container {
+    position: relative;
+    z-index: 2;
+    background: #ffffff;
+    border: 3px solid #FFD700;
+    border-radius: 28px;
+    padding: 2.5rem 2.5rem 2.5rem;
+    width: 100%;
+    max-width: 580px;
+    box-shadow:
+        0 0 0 6px rgba(255, 215, 0, 0.15),
+        8px 8px 0 #FFD700,
+        18px 18px 0 rgba(255, 215, 0, 0.25);
+    animation: cardIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    transition: box-shadow 0.3s ease;
+}
+.form-container:hover {
+    box-shadow:
+        0 0 0 8px rgba(255, 215, 0, 0.2),
+        8px 8px 0 #FFD700,
+        18px 18px 0 rgba(255, 215, 0, 0.25),
+        0 0 50px rgba(255, 215, 0, 0.25);
+}
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Sparkle corners */
+.form-container::before,
+.form-container::after {
+    content: '✦';
+    position: absolute;
+    font-size: 1.6rem;
+    color: #FFD700;
+}
+.form-container::before {
+    top: -14px; left: 24px;
+    animation: sparklePulse 3s ease-in-out infinite;
+}
+.form-container::after {
+    bottom: -14px; right: 24px;
+    animation: sparklePulse 3s ease-in-out infinite 1.5s;
+}
+@keyframes sparklePulse {
+    0%, 100% { transform: scale(1) rotate(0deg);     opacity: 1;   text-shadow: none; }
+    50%       { transform: scale(1.6) rotate(180deg); opacity: 0.7; text-shadow: 0 0 14px #FFD700; }
+}
+
+/* ── ANIME CHARACTER AVATAR (add this <img> tag in your HTML) ── */
+.anime-deco {
+    display: block;
+    margin: 0 auto 1.5rem;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #FFD700;
+    box-shadow:
+        0 0 0 6px rgba(255,215,0,0.2),
+        0 8px 30px rgba(255,215,0,0.4);
+    animation: bobFloat 3s ease-in-out infinite;
+}
+@keyframes bobFloat {
+    0%, 100% { transform: translateY(0);     }
+    50%       { transform: translateY(-10px); }
+}
+
+/* ── HEADING ── */
+h1 {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1.6rem, 5vw, 2.45rem);
+    letter-spacing: 0.07em;
+    text-align: center;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+    text-shadow:
+        3px  3px 0 #FFD700,
+        6px  6px 0 rgba(255,215,0,0.3),
+        0 0 40px rgba(255,215,0,0.2);
+}
+
+/* Shimmer underline */
+h1::after {
+    content: '';
+    display: block;
+    margin: 0.55rem auto 0;
+    width: 65%;
+    height: 3px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, transparent, #FFD700 25%, #FFA500 50%, #FFD700 75%, transparent);
+    background-size: 200% 100%;
+    animation: shimmerLine 2.5s linear infinite;
+}
+@keyframes shimmerLine {
+    from { background-position: 200% center; }
+    to   { background-position: -200% center; }
+}
+
+/* ── TAGLINE (optional — add <p class="tagline"> in your HTML) ── */
+.tagline {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaa;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    margin-top: 0.2rem;
+}
+
+/* ── BANNER IMAGE (optional — add <img class="banner"> in your HTML) ── */
+.banner {
+    display: block;
+    width: calc(100% + 5rem);
+    margin: 1.5rem -2.5rem 2rem;
+    height: 160px;
+    object-fit: cover;
+    object-position: center top;
+    border-top: 2px solid #FFD700;
+    border-bottom: 2px solid #FFD700;
+}
+
+/* ── FORM ── */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.8rem;
+}
+
+label {
+    font-weight: 800;
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+label::before {
+    content: '★';
+    color: #FFD700;
+    font-size: 0.9rem;
+    animation: spinStar 4s linear infinite;
+    display: inline-block;
+}
+@keyframes spinStar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.05rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    border: 2.5px solid #FFD700;
+    border-radius: 14px;
+    background: #fffef5;
+    color: #1a1a1a;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 6px rgba(255,215,0,0.1), 3px 3px 0 rgba(255,215,0,0.3);
+}
+input[type="number"]:focus {
+    border-color: #FFA500;
+    background: #ffffff;
+    box-shadow:
+        0 0 0 4px rgba(255,215,0,0.25),
+        inset 0 2px 6px rgba(255,215,0,0.1);
+    transform: scale(1.01);
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { opacity: 0; }
+
+/* ── BUTTON ── */
+button[type="submit"] {
+    position: relative;
+    padding: 0.95rem 2rem;
+    font-size: 1.2rem;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.12em;
+    color: #1a1a1a;
+    background: #FFD700;
+    border: 3px solid #1a1a1a;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #1a1a1a;
+    transition: all 0.15s ease;
+    overflow: hidden;
+}
+
+/* Shine sweep */
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+button[type="submit"]:hover::before { left: 130%; }
+
+button[type="submit"]::after {
+    content: ' ✦';
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+button[type="submit"]:hover {
+    background: #FFC200;
+    box-shadow: 7px 7px 0 #1a1a1a;
+    transform: translate(-2px, -2px);
+}
+button[type="submit"]:active {
+    box-shadow: 2px 2px 0 #1a1a1a;
+    transform: translate(3px, 3px);
+}
+
+/* ── RESULTS SECTION ── */
+.results-conatiner {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 2.5px dashed rgba(255, 215, 0, 0.7);
+    animation: fadeSlide 0.5s ease both;
+}
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-family: 'Bangers', cursive;
+    font-size: 1.65rem;
+    letter-spacing: 0.05em;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    text-shadow: 2px 2px 0 #FFD700, 0 0 30px rgba(255,215,0,0.2);
+}
+
+/* ── ANIME RESULT CARD LIST ── */
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    counter-reset: anime-counter;
+}
+
+li {
+    counter-increment: anime-counter;
+    position: relative;
+    padding: 0.85rem 3.5rem 0.85rem 3rem;
+    background: linear-gradient(135deg, #fffef5 0%, #fff9d0 100%);
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.97rem;
+    color: #2a2a2a;
+    transition: all 0.22s ease;
+    cursor: default;
+    box-shadow: 3px 3px 0 rgba(255,215,0,0.45);
+    animation: listPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+li:nth-child(1)  { animation-delay: 0.05s; }
+li:nth-child(2)  { animation-delay: 0.10s; }
+li:nth-child(3)  { animation-delay: 0.15s; }
+li:nth-child(4)  { animation-delay: 0.20s; }
+li:nth-child(5)  { animation-delay: 0.25s; }
+li:nth-child(6)  { animation-delay: 0.30s; }
+li:nth-child(7)  { animation-delay: 0.35s; }
+li:nth-child(8)  { animation-delay: 0.40s; }
+li:nth-child(9)  { animation-delay: 0.45s; }
+li:nth-child(10) { animation-delay: 0.50s; }
+@keyframes listPop {
+    from { opacity: 0; transform: translateX(-18px) scale(0.96); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* Arrow icon left */
+li::before {
+    content: '▶';
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFD700;
+    font-size: 0.75rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Number badge right */
+li::after {
+    content: counter(anime-counter, decimal-leading-zero);
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: rgba(255, 165, 0, 0.55);
+    letter-spacing: 0.03em;
+}
+
+li:hover {
+    background: linear-gradient(135deg, #fff5c0 0%, #ffe87a 100%);
+    border-color: #FFA500;
+    transform: translateX(7px);
+    box-shadow: 4px 4px 0 rgba(255,165,0,0.5);
+    color: #111;
+}
+li:hover::before {
+    transform: translateY(-50%) translateX(4px);
+    color: #FFA500;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #fffef5; }
+::-webkit-scrollbar-thumb { background: #FFD700; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #FFA500; }
+
+/* ── FOOTER / WATERMARK (optional) ── */
+.footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    font-size: 0.78rem;
+    color: #bbb;
+    letter-spacing: 0.05em;
+}
+.footer span {
+    color: #FFD700;
+    font-weight: 800;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+        box-shadow: 6px 6px 0 #FFD700, 12px 12px 0 rgba(255,215,0,0.2);
+    }
+    .banner {
+        width: calc(100% + 3rem);
+        margin: 1.2rem -1.5rem 1.5rem;
+    }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+}
