@@ -1,5 +1,0 @@
-outs:
-- md5: 6bcdc8b40a9610df39251cec43ea1a2d
-  size: 81969210
-  hash: md5
-  path: rating_df.csv
